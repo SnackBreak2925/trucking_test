@@ -1,2 +1,4 @@
 /.git
 /trucking-env/*
+/trucking/settings.py
+/trucking/__pycache__
