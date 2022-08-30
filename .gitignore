@@ -1,8 +1,9 @@
 /.git
-/trucking-env/*
+/trucking-env/
 /trucking/settings.py
 __pycache__/
 *.pyc
 *.swp
 *.sqlite3
 db.sqlite3
+/node_modules
