@@ -11,6 +11,7 @@
     "@apollo/client": "^3.6.9",
     "@vue/apollo-composable": "^4.0.0-alpha.19",
     "@vue/apollo-option": "^4.0.0-alpha.20",
+    "bootstrap": "^5.2.0",
     "core-js": "^3.8.3",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
@@ -26,7 +27,7 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "vue-cli-plugin-apollo": "~0.22.2"
+    "vue-cli-plugin-apollo": "^0.20.0"
   },
   "eslintConfig": {
     "root": true,
