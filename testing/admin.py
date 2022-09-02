@@ -1,48 +1,22 @@
 from django.contrib import admin
-from testing.models import Profile, Post, Tag
+from testing.models import Profile, Сounterparty, Order, Detail
+
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     model = Profile
 
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    model = Tag
 
-@admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
-    model = Post
+@admin.register(Сounterparty)
+class СounterpartyAdmin(admin.ModelAdmin):
+    model = Сounterparty
 
-    list_display = (
-        "id",
-        "title",
-        "subtitle",
-        "slug",
-        "publish_date",
-        "published",
-    )
-    list_filter = (
-        "published",
-        "publish_date",
-    )
-    list_editable = (
-        "title",
-        "subtitle",
-        "slug",
-        "publish_date",
-        "published",
-    )
-    search_fields = (
-        "title",
-        "subtitle",
-        "slug",
-        "body",
-    )
-    prepopulated_fields = {
-        "slug": (
-            "title",
-            "subtitle",
-        )
-    }
-    date_hierarchy = "publish_date"
-    save_on_top = True
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    model = Order
+
+
+@admin.register(Detail)
+class DetailAdmin(admin.ModelAdmin):
+    model = Detail

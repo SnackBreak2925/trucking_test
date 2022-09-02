@@ -1,3 +1,4 @@
+from multiprocessing.dummy import Manager
 from django.db import models
 from django.conf import settings
 
@@ -14,26 +15,33 @@ class Profile(models.Model):
         return self.user.get_username()
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+class Сounterparty(models.Model):
+    organization_name = models.CharField(max_length=200, unique=False)
+    phone_number = models.CharField(max_length=15, unique=True)
+    inn_document = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.organization_name
 
 
-class Post(models.Model):
+class Order(models.Model):
+    order_code = models.CharField(max_length=10, unique=False)
+    manager_id = models.ForeignKey(Profile, on_delete=models.PROTECT)
+    from_organization_id = models.ForeignKey(Сounterparty, related_name='sender',on_delete=models.CASCADE)
+    to_organization_id = models.ForeignKey(Сounterparty, related_name='reciever',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.order_code  # TODO записать номер заказа откуда куда
+
+
+class Detail(models.Model):
     class Meta:
-        ordering = ["-publish_date"]
+        ordering = ["-date_created"]
 
-    title = models.CharField(max_length=255, unique=True)
-    subtitle = models.CharField(max_length=255, blank=True)
-    slug = models.SlugField(max_length=255, unique=True)
-    body = models.TextField()
-    meta_description = models.CharField(max_length=150, blank=True)
+    order_id = models.ForeignKey(Order, on_delete=models.PROTECT)
+    weight = models.DecimalField(max_digits=7, decimal_places=3)
+    price = models.DecimalField(max_digits=12, decimal_places=2)
+    name = models.CharField(max_length=200, unique=False)
+    volume = models.DecimalField(max_digits=7, decimal_places=3)
+    place_quantity = models.IntegerField()
     date_created = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(auto_now=True)
-    publish_date = models.DateTimeField(blank=True, null=True)
-    published = models.BooleanField(default=False)
-
-    author = models.ForeignKey(Profile, on_delete=models.PROTECT)
-    tags = models.ManyToManyField(Tag, blank=True)
