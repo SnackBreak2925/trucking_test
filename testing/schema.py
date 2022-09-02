@@ -1,4 +1,3 @@
-from typing import Counter
 from django.conf import settings
 from graphene_django import DjangoObjectType
 
@@ -20,9 +19,9 @@ class ProfileType(DjangoObjectType):
         model = models.Profile
 
 
-class СounterpartyType(DjangoObjectType):
+class CounterpartyType(DjangoObjectType):
     class Meta:
-        model = models.Сounterparty
+        model = models.Counterparty
 
 
 class OrderType(DjangoObjectType):
@@ -37,13 +36,11 @@ class DetailType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     all_orders = graphene.List(OrderType)
-    all_counterparties = graphene.List(СounterpartyType)
+    all_counterparties = graphene.List(CounterpartyType)
 
     def resolve_all_orders(root, info):
         return (
-            models.Order.objects
-            .select("order_code")
-            .all()
+            models.Order.objects.all()
         )
 
     def resolve_all_counterparties(root, info):
@@ -52,6 +49,7 @@ class Query(graphene.ObjectType):
             .select("organization_name")
             .all()
         )
+    pass
 
 
 schema = graphene.Schema(query=Query)

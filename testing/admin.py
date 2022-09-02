@@ -1,5 +1,5 @@
 from django.contrib import admin
-from testing.models import Profile, Сounterparty, Order, Detail
+from testing.models import Profile, Counterparty, Order, Detail
 
 
 @admin.register(Profile)
@@ -7,9 +7,9 @@ class ProfileAdmin(admin.ModelAdmin):
     model = Profile
 
 
-@admin.register(Сounterparty)
-class СounterpartyAdmin(admin.ModelAdmin):
-    model = Сounterparty
+@admin.register(Counterparty)
+class CounterpartyAdmin(admin.ModelAdmin):
+    model = Counterparty
 
 
 @admin.register(Order)

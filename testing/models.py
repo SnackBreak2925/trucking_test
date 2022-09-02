@@ -15,7 +15,7 @@ class Profile(models.Model):
         return self.user.get_username()
 
 
-class Сounterparty(models.Model):
+class Counterparty(models.Model):
     organization_name = models.CharField(max_length=200, unique=False)
     phone_number = models.CharField(max_length=15, unique=True)
     inn_document = models.CharField(max_length=10, unique=True)
@@ -27,8 +27,8 @@ class Сounterparty(models.Model):
 class Order(models.Model):
     order_code = models.CharField(max_length=10, unique=False)
     manager_id = models.ForeignKey(Profile, on_delete=models.PROTECT)
-    from_organization_id = models.ForeignKey(Сounterparty, related_name='sender',on_delete=models.CASCADE)
-    to_organization_id = models.ForeignKey(Сounterparty, related_name='reciever',on_delete=models.CASCADE)
+    from_organization_id = models.ForeignKey(Counterparty, related_name='sender',on_delete=models.CASCADE)
+    to_organization_id = models.ForeignKey(Counterparty, related_name='reciever',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.order_code  # TODO записать номер заказа откуда куда
