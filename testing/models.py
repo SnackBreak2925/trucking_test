@@ -25,7 +25,7 @@ class Counterparty(models.Model):
 
 
 class Order(models.Model):
-    order_code = models.CharField(max_length=10, unique=False)
+    order_code = models.CharField(max_length=10, unique=True)
     manager_id = models.ForeignKey(Profile, on_delete=models.PROTECT)
     from_organization_id = models.ForeignKey(Counterparty, related_name='sender',on_delete=models.CASCADE)
     to_organization_id = models.ForeignKey(Counterparty, related_name='reciever',on_delete=models.CASCADE)

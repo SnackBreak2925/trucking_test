@@ -45,7 +45,7 @@ class Query(graphene.ObjectType):
 
     def resolve_all_counterparties(root, info):
         return (
-            models.Сounterparty.objects
+            models.Counterparty.objects
             .select("organization_name")
             .all()
         )
